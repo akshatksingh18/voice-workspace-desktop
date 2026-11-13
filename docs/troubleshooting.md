@@ -1,6 +1,6 @@
 # Troubleshooting and platform notes
 
-Carried over from the Voice Workspace README this app started from, renamed for this
+Carried over from the Handy README this app started from, renamed for this
 app. Upstream issue links are kept as background references.
 
 ## Shortcuts stopped working on macOS (Secure Input)
@@ -60,18 +60,14 @@ Without these tools, Voice Workspace falls back to enigo which may have limited 
 - **Runtime library dependency (`libgtk-layer-shell.so.0`)**:
   - Voice Workspace links `gtk-layer-shell` on Linux. If startup fails with `error while loading shared libraries: libgtk-layer-shell.so.0`, install the runtime package for your distro:
 
-    | Distro        | Package to install    | Example command                        |
-    | ------------- | --------------------- | -------------------------------------- |
-    | Ubuntu/Debian | `libgtk-layer-shell0` | `sudo apt install libgtk-layer-shell0` |
-    | Fedora/RHEL   | `gtk-layer-shell`     | `sudo dnf install gtk-layer-shell`     |
-    | Arch Linux    | `gtk-layer-shell`     | `sudo pacman -S gtk-layer-shell`       |
+    Package names per distro are in the table under [Linux Startup Crashes or Instability](#linux-startup-crashes-or-instability).
 
   - For building from source on Ubuntu/Debian, you may also need `libgtk-layer-shell-dev`.
 
 - The recording overlay is disabled by default on Linux (`Overlay Position: None`) because certain compositors treat it as the active window. When the overlay is visible it can steal focus, which prevents Voice Workspace from pasting back into the application that triggered transcription. If you enable the overlay anyway, be aware that clipboard-based pasting might fail or end up in the wrong window.
 - Voice Workspace disables the WebKit DMA-BUF renderer by default on Linux, but preserves explicit `WEBKIT_DISABLE_DMABUF_RENDERER` values. For rendering workarounds, see [Troubleshooting → Linux Startup Crashes or Instability](#linux-startup-crashes-or-instability).
 - If Voice Workspace fails to start reliably on Linux, see [Troubleshooting → Linux Startup Crashes or Instability](#linux-startup-crashes-or-instability).
-- **Global keyboard shortcuts (Wayland):** On Wayland, system-level shortcuts must be configured through your desktop environment or window manager. Use the [CLI flags](#cli-parameters) as the command for your custom shortcut.
+- **Global keyboard shortcuts (Wayland):** On Wayland, system-level shortcuts must be configured through your desktop environment or window manager. Use the [CLI flags](#command-line-flags) as the command for your custom shortcut.
 
   **GNOME:**
   1. Open **Settings > Keyboard > Keyboard Shortcuts > Custom Shortcuts**
@@ -285,7 +281,7 @@ Voice Workspace's built-in autostart rewrites its generated desktop entry, so ed
 ### Empty recording overlay on Hyprland / Omarchy
 
 If the recording overlay is empty or bordered, fully quit Voice Workspace and launch a
-[native installation](BUILD.md#linux-install-from-source) with Wayland enabled:
+[native installation](../BUILD.md#linux-install-from-source) with Wayland enabled:
 
 ```bash
 env -u HANDY_NO_GTK_LAYER_SHELL GDK_BACKEND=wayland voice-workspace
