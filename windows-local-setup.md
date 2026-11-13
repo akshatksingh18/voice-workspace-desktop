@@ -107,10 +107,10 @@ macOS is not compiled at all.
 
 `src-tauri/examples/asr_latency.rs` benchmarks batch or real-time-paced native streaming without
 microphone, VAD, history or paste, and emits aggregate JSON only, never recognized text. With the
-x64 environment above, from the repository root:
+x64 environment above:
 
 ```powershell
-Set-Location src-tauri
+Set-Location src-tauri   # from the repository root
 cargo build --release --example asr_latency
 ```
 
