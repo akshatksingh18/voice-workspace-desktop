@@ -30,12 +30,7 @@ no secrets.
   each folder with a `VERSION.txt` as `voice-workspace-windows-arm64.zip` and
   `voice-workspace-windows-x64.zip`, and publishes GitHub Release `v<version>` with a
   `SHA256SUMS.txt` for the zips. Only its publish job gets `contents: write`. The fixed asset
-  names keep `releases/latest/download/<zip>` stable for the install script. The first release,
-  [v0.10.0](https://github.com/akshatksingh18/voice-workspace-desktop/releases/tag/v0.10.0)
-  ([run 40520112353](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40520112353),
-  commit `3c57e35c`), passed all four jobs: ARM64 zip 12.9 MB, x64 zip 30.5 MB, each holding only
-  the exe, DLLs, `resources/`, `VERSION.txt` and checksums. The install script then installed the
-  ARM64 zip on the Snapdragon laptop, which starts and warms Parakeet normally.
+  names keep `releases/latest/download/<zip>` stable for the install script.
 
 Releases are unsigned and there is no installer; Handy's signing and installer workflows were
 removed. Run a workflow on a branch with `gh workflow run <file> --ref <branch>`; pushing a
@@ -44,27 +39,7 @@ branch other than `main` starts nothing on its own.
 ## Current verified source
 
 `main` holds Handy's final imported source (`73c09585`), this project's features and the
-standalone makeover:
-
-- Feature port (`a61d1b18`): Rust tests passed
-  ([run 40485230453](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40485230453))
-  and the ARM64 build passed
-  ([run 40485233651](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40485233651)).
-- Makeover (`d338ea2c`): Rust tests
-  ([run 40487963331](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40487963331)),
-  code quality
-  ([run 40487966834](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40487966834)),
-  Playwright
-  ([run 40487974531](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40487974531))
-  and the ARM64 build
-  ([run 40487970601](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40487970601),
-  10 min compile after the rename reset the Rust cache) all passed. The ARM64 artifact's
-  `voice-workspace.exe` is SHA-256 `13650450…2a65`; its eight VC++ DLLs are unchanged from earlier
-  runs. On the Snapdragon laptop it lists only the Oryon CPU, recognizes saved clips headless in
-  0.32 s (5.8 s clip) and 0.49 s (7.2 s clip), and the GUI loads and warms Parakeet in its worker
-  process (warm-up 94 ms). Live dictation on this build is not yet tested.
-- Before the makeover, the imported source alone passed the full Rust suite at `9ddfa264`
-  (316 passed, 18 ignored) and frontend checks; those runs are in the repository's Actions history.
+standalone makeover; its feature CI evidence is in `voice-workspace-features.md`.
 
 Local recovery copies of the pre-import history are kept under `.git/local-recovery/` and
 `refs/local-recovery/` on the laptop that did the import. They are local only; never push them.
@@ -132,10 +107,10 @@ macOS is not compiled at all.
 
 `src-tauri/examples/asr_latency.rs` benchmarks batch or real-time-paced native streaming without
 microphone, VAD, history or paste, and emits aggregate JSON only, never recognized text. With the
-x64 environment above:
+x64 environment above, from the repository root:
 
 ```powershell
-Set-Location 'D:\AI Important Files\personal-project\voice-workspace-desktop\src-tauri'
+Set-Location src-tauri
 cargo build --release --example asr_latency
 ```
 

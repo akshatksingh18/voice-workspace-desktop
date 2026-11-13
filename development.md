@@ -7,11 +7,6 @@ suites run on GitHub Actions, not locally (see `windows-local-setup.md`).
 
 ## Development Commands
 
-**Prerequisites:**
-
-- [Rust](https://rustup.rs/) (latest stable)
-- [Bun](https://bun.sh/) package manager
-
 **Core Development:**
 
 ```bash

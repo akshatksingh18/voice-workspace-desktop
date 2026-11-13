@@ -26,8 +26,7 @@ stays dormant for recovery, and its synthetic tests never proved acoustic or mea
 - **Idle re-warm:** a dictation that starts after 15 s without use (warm-up on) repeats that
   warm-up in a background thread while the user speaks. It queues on the engine like any other
   run, so a release during it waits rather than fails; a failure only costs the speed it would
-  have saved. INFO logs `dictation_rewarm_ms` and `idle_s`, no content. Live result on the
-  previous engine: first dictation after 26.8 min idle 0.743 s (was 3.192 s).
+  have saved. INFO logs `dictation_rewarm_ms` and `idle_s`, no content.
 - **Early phrase recognition** (opt-in `early_chunk_recognition`, no UI toggle; needs
   full-recording mode, VAD on and Model Unload not _Immediately_): a third live decoder beside
   upstream's stream and long-form chunk decoders (`transcription/phrases.rs`). The recorder passes
@@ -67,8 +66,8 @@ At commit `a61d1b18` (the feature port) the full Rust suite passed
 and the Windows ARM64 release build with its CPU-only device check passed
 ([run 40485233651](https://github.com/akshatksingh18/voice-workspace-desktop/actions/runs/40485233651)).
 The standalone makeover then passed Rust tests, code quality (lint, format, model-language
-coverage, keyboard and history-delivery tests, production build) and Playwright; exact runs and
-the deployed exe are in `windows-local-setup.md`. Re-warm and early phrases are covered by the
+coverage, keyboard and history-delivery tests, production build) and Playwright; the deployed exe
+is recorded in `../voice-workspace/setup.md`. Re-warm and early phrases are covered by the
 policy unit tests and compile checks only; their behavior on this engine is not yet live-tested.
 
 Earlier evidence still applies to unchanged behavior: eight converter tests, six history-delivery
