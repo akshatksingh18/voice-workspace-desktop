@@ -116,7 +116,7 @@ Voice Workspace is a cross-platform desktop speech-to-text application built wit
 1. **Initialization:** App starts minimized to tray, loads settings, initializes managers
 2. **Model Setup:** First run downloads the chosen model from Hugging Face
 3. **Recording:** Global shortcut triggers audio recording with VAD filtering
-4. **Processing:** Audio sent to Whisper model for transcription
+4. **Processing:** Audio sent to the selected model (Parakeet by default) in the transcription worker process
 5. **Output:** Text pasted to active application via system clipboard
 
 ### Settings System
@@ -177,12 +177,7 @@ Voice Workspace supports command-line parameters on all platforms for integratio
 **Key design decisions:**
 
 - CLI flags are runtime-only overrides — they do NOT modify persisted settings
-- Remote control flags work via `tauri_plugin_single_instance`: second instance sends args, then exits
 - `send_transcription_input()` in `signal_handle.rs` is shared between signal handlers and CLI
-
-## Debug Mode
-
-Access debug features: `Cmd+Shift+D` (macOS) or `Ctrl+Shift+D` (Windows/Linux)
 
 ## Platform Notes
 

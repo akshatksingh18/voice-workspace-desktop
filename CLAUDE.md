@@ -3,15 +3,11 @@
 Akshat's desktop dictation app: the Tauri (Rust + React) application behind the Voice Workspace
 project. It started from the MIT-licensed Handy app and is now maintained as its own project, with
 its own name ("Voice Workspace"), icons, CI and release process. There is no upstream remote, no
-updater and no runtime download from Handy's servers; nothing pulls Handy's code in automatically.
-Product requirements, evaluation and test results live in `../voice-workspace/`.
+updater and no runtime download from Handy's servers.
 
-**Status:** Active desktop app, Windows-first. `main` contains Handy's final imported source
-(`73c09585`), this project's dictation features and the standalone makeover. The Snapdragon X
+**Status:** Active desktop app, Windows-first. The Snapdragon X
 laptop runs the CI-built ARM64 exe from `main`; the combined live retest (idle re-warm, early
-phrases, rename) is the next acceptance step. Both laptops install GitHub Releases (ARM64 and
-x64 zips) with Voice Workspace's `install-desktop.ps1`; neither needs a local compiler. The x64
-laptop still runs an older build until that script is run there.
+phrases, rename) is the next acceptance step.
 
 ## Files
 
@@ -39,7 +35,7 @@ laptop still runs an older build until that script is run there.
 
 ## Working agreement
 
-- Follow the workspace and `personal-project` CLAUDE chain. Publish only to Akshat's public
+- Publish only to Akshat's public
   `akshatksingh18/voice-workspace-desktop` repository; review every push as public content.
 - Keep the MIT license, the original copyright notice and the Handy credit in README and the
   About page. Do not reintroduce Handy's name, logo or brand assets as this app's branding.
@@ -53,7 +49,6 @@ laptop still runs an older build until that script is run there.
   `handy-*.wav` recording names, the `handy.png` tray resource names and the x64 laptop's
   `%LOCALAPPDATA%\handy-build-deps` folder. The pink palette is inherited and kept; only the logos
   are this project's own.
-- Full builds and test suites run on GitHub Actions; locally run only quick targeted checks.
 - Releases: bump the version in `src-tauri/tauri.conf.json`, `src-tauri/Cargo.toml` (and its
   lock entry) and `package.json` together, then run `release.yml`; it refuses an existing tag.
   Release zips are public and must never contain settings, models, history or recordings.
