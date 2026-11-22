@@ -31,6 +31,7 @@ phrases, rename) is the next acceptance step.
 - `.github/workflows/` — code quality, Rust tests (on Linux), Playwright, the manual Windows
   ARM64 and x64 builds, and `release.yml`, which builds both and publishes a GitHub Release.
 - `package.json` and `bun.lock` — Bun-managed frontend dependencies.
+- `.ignore` — keeps `bun.lock` and `src-tauri/Cargo.lock` out of agent searches (ripgrep).
 - `LICENSE` — MIT license with Handy's original copyright notice; keep it.
 
 ## Working agreement

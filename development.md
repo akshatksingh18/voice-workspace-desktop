@@ -79,7 +79,9 @@ Voice Workspace is a cross-platform desktop speech-to-text application built wit
   - `model-selector/` - Model management interface
   - `onboarding/` - First-run experience
   - `overlay/` - Recording overlay UI
-  - `shared/`, `ui/`, `icons/`, `footer/` - Shared components
+  - `shared/`, `ui/`, `icons/`, `footer/` - Shared components (`ui/Badge.tsx` is unused: no import, not
+    exported from `ui/index.ts`, left from Handy's models page; remove it in the next frontend code
+    change, with the CI frontend checks)
 - `hooks/useSettings.ts` - Settings state management hook
 - `stores/settingsStore.ts` - Zustand store for settings
 - `bindings.ts` - Auto-generated Tauri type bindings (via tauri-specta)
